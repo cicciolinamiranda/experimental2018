@@ -25,7 +25,7 @@ android {
 }
 
 ext.supportLibraryVersion = "25.4.0"
-ext.parcelerVersion= "1.1.5"
+ext.parcelerVersion = "1.1.5"
 ext.butterknifeVersion = "8.6.0"
 
 dependencies {

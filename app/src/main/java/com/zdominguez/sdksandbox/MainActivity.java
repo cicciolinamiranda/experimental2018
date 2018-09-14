@@ -211,6 +211,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void onCanvasDrawing() {
+        Intent intent = new Intent(this, DrawingShapesActivity.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
