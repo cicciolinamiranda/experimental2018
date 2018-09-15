@@ -116,6 +116,12 @@
             android:layout_height="wrap_content"
             android:onClick="@{() -> handlers.onCanvasDrawing()}"
             android:text="Canvas Drawing"/>
+
+        <Button android:id="@+id/canvas_drawing_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> handlers.onCanvasDrawing2()}"
+            android:text="Canvas Drawing 2"/>
         <EditText
             android:id="@+id/first_name"
             android:layout_width="match_parent"

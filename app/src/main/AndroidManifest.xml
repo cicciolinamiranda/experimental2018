@@ -18,10 +18,10 @@
         </activity>
         <activity
             android:name=".PercentInListActivity"
-            android:label="@string/title_activity_percent_in_list"></activity>
+            android:label="@string/title_activity_percent_in_list" />
         <activity
             android:name=".ResourceAnnotationsActivity"
-            android:label="Annotations"></activity>
+            android:label="Annotations" />
         <activity
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings">
@@ -34,16 +34,16 @@
         </activity>
         <activity
             android:name=".PercentLayoutActivity"
-            android:label="33%!"></activity>
+            android:label="33%!" />
         <activity
             android:name=".LinearLayoutActivity"
-            android:label="LinearLayoutDemo"></activity>
+            android:label="LinearLayoutDemo" />
         <activity
             android:name=".RecyclerViewViewStubs"
-            android:label="RecyclerView + ViewStubs"></activity>
+            android:label="RecyclerView + ViewStubs" />
         <activity
             android:name=".DataBindingSpans"
-            android:label="DataBinding + Spans"></activity>
+            android:label="DataBinding + Spans" />
         <activity
             android:name=".ConstraintLayoutDemo"
             android:label="Constraint Layout" />
@@ -54,7 +54,8 @@
         <activity
             android:name=".bottomsheet.CustomShareActivity"
             android:label="Choose Me!" />
-        <activity android:name=".DrawingShapesActivity"></activity>
+        <activity android:name=".DrawingShapesActivity" />
+        <activity android:name=".DrawShapes2Activity"></activity>
     </application>
 
 </manifest>
