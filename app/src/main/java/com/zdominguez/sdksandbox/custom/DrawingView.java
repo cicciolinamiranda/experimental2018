@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -30,7 +31,7 @@ public class DrawingView extends View {
 
         for(RectanglePoints rectanglePoints: rectanglePoints) {
             paint.setColor(rectanglePoints.getColorIntValue());
-            canvas.drawRect(rectanglePoints.getRect(), paint);
+            canvas.drawPath(rectanglePoints.getPath(), paint);
         }
 
 
@@ -42,8 +43,14 @@ public class DrawingView extends View {
 
             for(RectanglePoints rectanglePoint: rectanglePoints) {
 
-                if(rectanglePoint.getRect() != null && rectanglePoint.getRect().contains((int) event.getX(), (int) event.getY())) {
-                    drawingViewInterface.onClickListener(rectanglePoint);
+                if(rectanglePoint.getPath() != null) {
+
+                    RectF rectF = new RectF();
+                    rectanglePoint.getPath().computeBounds(rectF, true);
+
+                    if(rectF.contains((int) event.getX(), (int) event.getY())) {
+                        drawingViewInterface.onClickListener(rectanglePoint);
+                    }
                 }
 
             }
