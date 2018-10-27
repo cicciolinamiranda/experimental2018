@@ -5,14 +5,14 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.Rect;
 
-public class RectanglePoints {
+public class DrawingPoints {
 
 
     private Path path;
     private int colorIntValue;
     private String label;
 
-    public RectanglePoints(Path path, int colorIntValue, String label) {
+    public DrawingPoints(Path path, int colorIntValue, String label) {
         this.path = path;
         this.colorIntValue = colorIntValue;
         this.label = label;

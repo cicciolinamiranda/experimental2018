@@ -2,11 +2,10 @@ package com.zdominguez.sdksandbox.custom;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.RectF;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
+import android.graphics.Region;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -15,12 +14,12 @@ import java.util.List;
 public class DrawingView extends View {
 
     Paint paint = new Paint();
-    private List<RectanglePoints> rectanglePoints;
+    private List<DrawingPoints> drawingPoints;
     private DrawingViewInterface drawingViewInterface;
 
-    public DrawingView(Context context, List<RectanglePoints> rectanglePoints, DrawingViewInterface drawingViewInterface) {
+    public DrawingView(Context context, List<DrawingPoints> drawingPoints, DrawingViewInterface drawingViewInterface) {
         super(context);
-        this.rectanglePoints = rectanglePoints;
+        this.drawingPoints = drawingPoints;
         this.drawingViewInterface = drawingViewInterface;
     }
 
@@ -29,9 +28,9 @@ public class DrawingView extends View {
 
     public void onDraw(Canvas canvas) {
 
-        for(RectanglePoints rectanglePoints: rectanglePoints) {
-            paint.setColor(rectanglePoints.getColorIntValue());
-            canvas.drawPath(rectanglePoints.getPath(), paint);
+        for(DrawingPoints drawingPoints : this.drawingPoints) {
+            paint.setColor(drawingPoints.getColorIntValue());
+            canvas.drawPath(drawingPoints.getPath(), paint);
         }
 
 
@@ -39,16 +38,18 @@ public class DrawingView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_DOWN && rectanglePoints != null) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN && drawingPoints != null) {
 
-            for(RectanglePoints rectanglePoint: rectanglePoints) {
+            for(DrawingPoints rectanglePoint: drawingPoints) {
 
                 if(rectanglePoint.getPath() != null) {
 
                     RectF rectF = new RectF();
                     rectanglePoint.getPath().computeBounds(rectF, true);
+                    Region r = new Region();
+                    r.setPath(rectanglePoint.getPath(), new Region((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom));
 
-                    if(rectF.contains((int) event.getX(), (int) event.getY())) {
+                    if(r.contains((int) event.getX(), (int) event.getY())) {
                         drawingViewInterface.onClickListener(rectanglePoint);
                     }
                 }
@@ -59,7 +60,7 @@ public class DrawingView extends View {
     }
 
     public interface DrawingViewInterface {
-        void onClickListener(RectanglePoints rectanglePoints);
+        void onClickListener(DrawingPoints drawingPoints);
     }
 
 }
