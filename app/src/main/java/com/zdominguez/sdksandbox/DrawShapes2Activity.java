@@ -4,11 +4,16 @@ import android.graphics.Path;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.zdominguez.sdksandbox.custom.DrawingView;
 import com.zdominguez.sdksandbox.custom.DrawingPoints;
+import com.zdominguez.sdksandbox.custom.OnPinchListener;
+import com.zdominguez.sdksandbox.custom.ZoomableRelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +21,27 @@ import java.util.List;
 public class DrawShapes2Activity extends AppCompatActivity implements DrawingView.DrawingViewInterface {
 
     private DrawingView drawingView;
-    private RelativeLayout relativeLayout;
+    private ZoomableRelativeLayout relativeLayout;
+    private ScaleGestureDetector scaleGestureDetector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_draw_shapes2);
 
-        relativeLayout = (RelativeLayout) findViewById(R.id.container);
+        relativeLayout = (ZoomableRelativeLayout) findViewById(R.id.container);
 
+        scaleGestureDetector = new ScaleGestureDetector(this, new OnPinchListener(relativeLayout));
+
+        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                scaleGestureDetector.onTouchEvent(event);
+                return true;
+            }
+        });
         final Path path1 = new Path();
 
         path1.moveTo(0,0);

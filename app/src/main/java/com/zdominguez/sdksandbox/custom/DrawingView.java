@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Region;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
 import android.view.View;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class DrawingView extends View {
     private Paint paint;
     private List<DrawingPoints> drawingPoints;
     private DrawingViewInterface drawingViewInterface;
-    private Canvas canvas;
+    private ScaleGestureDetector mScaleDetector;
 
     public DrawingView(Context context, List<DrawingPoints> drawingPoints, DrawingViewInterface drawingViewInterface) {
         super(context);
@@ -28,12 +29,11 @@ public class DrawingView extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        this.canvas = canvas;
         for(DrawingPoints drawingPoints : this.drawingPoints) {
             paint.setColor(drawingPoints.getColorIntValue());
 
             if(drawingPoints.isSelected()) {
-                paint.setAlpha(5);
+                paint.setAlpha(60);
             }
 
             canvas.drawPath(drawingPoints.getPath(), paint);
