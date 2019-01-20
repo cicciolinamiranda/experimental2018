@@ -11,6 +11,7 @@ public class DrawingPoints {
     private Path path;
     private int colorIntValue;
     private String label;
+    private boolean isSelected;
 
     public DrawingPoints(Path path, int colorIntValue, String label) {
         this.path = path;
@@ -40,5 +41,13 @@ public class DrawingPoints {
 
     public void setLabel(String label) {
         this.label = label;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
     }
 }
